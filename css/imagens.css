@@ -1,0 +1,29 @@
+.patrocinios{
+    text-align:center;
+}
+
+.patrocinios img{
+    display:inline-block;
+    width:25%;
+    margin:0 1% 0 1%;
+}
+
+.limfa{
+    text-align: center;
+    padding: 5%;
+}
+
+.limfa img{
+    display: inline-block;
+    width: 50%;
+}
+
+.camp{
+    text-align:center;
+}
+
+.camp img{
+    display:inline-block;
+    width:100%;
+    margin:0 1% 0 1%;
+}

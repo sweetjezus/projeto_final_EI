@@ -1,0 +1,31 @@
+body{
+    background-color: black;
+    color: white;
+}
+
+footer{
+    width: 100%;
+    background-color: white;
+    padding: 60px 0px   ;
+}
+
+footer nav{
+    text-align: center;
+}
+
+footer nav ul{
+}
+
+footer nav ul li{
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 20px;
+    list-style: none;
+}
+
+footer nav ul li a{
+    font-family: "Arial Nova";
+    color: black;
+}
+
+

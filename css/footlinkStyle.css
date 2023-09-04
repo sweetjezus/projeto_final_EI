@@ -1,0 +1,19 @@
+.title{
+    font-family: NBABUZZCITY;
+    color: white;
+    font-size: larger;
+}
+
+hr{
+    border: 1px solid white;
+}
+
+.textstyle{
+    font-family: "Arial Nova";
+    color: white;
+    font-size: 14px;
+}
+
+.link{
+    color: #FF6600;
+}
