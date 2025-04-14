@@ -1,6 +1,6 @@
 <?php
 $servername = "localhost";
-$dBUsername = "root";
+$dBUsername = "francisco";
 $dBPassword = "";
 
 // Criar connection
@@ -30,7 +30,12 @@ if ($conn->connect_error) {
 }
 
 // Criar Tabelas
-
+#tipo de entidade
+$table1 = "CREATE TABLE IF NOT EXISTS `EqsDB`.`tipodeentidade` (
+  `idTipo de Entidade` INT NOT NULL,
+  `Tipo` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idTipo de Entidade`)
+) ENGINE = InnoDB";
 
 #Entidades
 $table2 = "CREATE TABLE IF NOT EXISTS `EqsDB`.`Entidade` (
