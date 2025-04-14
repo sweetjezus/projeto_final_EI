@@ -132,7 +132,7 @@ $table6 = "CREATE TABLE IF NOT EXISTS `EqsDB`.`Pedido` (
 ENGINE = InnoDB";
 
 
-$tables = [$table2,$table3,$table4,$table5,$table6];
+$tables = [$table1,$table2,$table3,$table4,$table5,$table6];
 
 foreach($tables as $k => $sql){
     $query = @$conn->query($sql);
