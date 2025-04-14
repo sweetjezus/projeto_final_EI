@@ -31,14 +31,15 @@ if ($conn->connect_error) {
 
 // Criar Tabelas
 #tipo de entidade
+// TABELAS - CREATE
+
 $table1 = "CREATE TABLE IF NOT EXISTS `EqsDB`.`tipodeentidade` (
   `idTipo de Entidade` INT NOT NULL,
   `Tipo` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idTipo de Entidade`)
-) ENGINE = InnoDB";
+) ENGINE = InnoDB;";
 
-#Entidades
-$table2 = "CREATE TABLE IF NOT EXISTS `EqsDB`.`Entidade` (
+$table2 = "CREATE TABLE IF NOT EXISTS `EqsDB`.`entidade` (
   `idEntidade` INT AUTO_INCREMENT NOT NULL,
   `Nome` VARCHAR(45) NOT NULL,
   `Email` VARCHAR(45) NOT NULL,
@@ -49,21 +50,16 @@ $table2 = "CREATE TABLE IF NOT EXISTS `EqsDB`.`Entidade` (
   `Localidade` VARCHAR(45) NOT NULL,
   `Telefone` VARCHAR(14) NOT NULL,
   `TipoDeEntidade` VARCHAR(1) NOT NULL,
-  PRIMARY KEY (`idEntidade`),
-  UNIQUE INDEX `idUtilizador_UNIQUE` (`idEntidade` ASC),
-  UNIQUE INDEX `Email_UNIQUE` (`Email` ASC) )
-ENGINE = InnoDB;
-";
+  PRIMARY KEY (`idEntidade`)
+) ENGINE = InnoDB;";
 
-//EstadoDaListagem
-$table3 = "CREATE TABLE IF NOT EXISTS `EqsDB`.`EstadoDaListagem` (
+$table3 = "CREATE TABLE IF NOT EXISTS `EqsDB`.`estadodalistagem` (
   `idEstado` INT NOT NULL,
   `Estado` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idEstado`))
-ENGINE = InnoDB";
+  PRIMARY KEY (`idEstado`)
+) ENGINE = InnoDB;";
 
-//Equipamento
-$table4="CREATE TABLE IF NOT EXISTS `EqsDB`.`Equipamento` (
+$table4 = "CREATE TABLE IF NOT EXISTS `EqsDB`.`equipamento` (
   `idEquipamento` INT(6) AUTO_INCREMENT,
   `Tipo` VARCHAR(45) NOT NULL,
   `Descrição` VARCHAR(300) NOT NULL,
@@ -73,29 +69,17 @@ $table4="CREATE TABLE IF NOT EXISTS `EqsDB`.`Equipamento` (
   `Entidade_idEntidade` INT NOT NULL,
   `Estado_idEstado` INT NOT NULL,
   PRIMARY KEY (`idEquipamento`),
-  INDEX `fk_Equipamentos_Entidades1_idx` (`Entidade_idEntidade` ASC) ,
-  INDEX `fk_Equipamento_Estado1_idx` (`Estado_idEstado` ASC) ,
-  CONSTRAINT `fk_Equipamentos_Entidades1`
-    FOREIGN KEY (`Entidade_idEntidade`)
-    REFERENCES `EqsDB`.`Entidade` (`idEntidade`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Equipamento_Estado1`
-    FOREIGN KEY (`Estado_idEstado`)
-    REFERENCES `EqsDB`.`EstadoDaListagem` (`idEstado`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB";
+  FOREIGN KEY (`Entidade_idEntidade`) REFERENCES `EqsDB`.`entidade` (`idEntidade`),
+  FOREIGN KEY (`Estado_idEstado`) REFERENCES `EqsDB`.`estadodalistagem` (`idEstado`)
+) ENGINE = InnoDB;";
 
-//EstadoDoPedido
-$table5 = "CREATE TABLE IF NOT EXISTS `EqsDB`.`EstadoDoPedido` (
+$table5 = "CREATE TABLE IF NOT EXISTS `EqsDB`.`estadodopedido` (
   `idEstado` INT NOT NULL,
   `Estado` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idEstado`))
-ENGINE = InnoDB";
+  PRIMARY KEY (`idEstado`)
+) ENGINE = InnoDB;";
 
-//Pedido
-$table6 = "CREATE TABLE IF NOT EXISTS `EqsDB`.`Pedido` (
+$table6 = "CREATE TABLE IF NOT EXISTS `EqsDB`.`pedido` (
   `idPedido` INT(6) AUTO_INCREMENT NOT NULL,
   `Equipamentos_idEquipamentos` INT NOT NULL,
   `Num_Identificação_de_Seguranca_Social` VARCHAR(14) NOT NULL,
@@ -105,31 +89,12 @@ $table6 = "CREATE TABLE IF NOT EXISTS `EqsDB`.`Pedido` (
   `Junta_idEntidade` INT NOT NULL,
   `IPSS_idEntidade` INT NOT NULL,
   PRIMARY KEY (`idPedido`),
-  INDEX `fk_Pedido_Equipamentos1_idx` (`Equipamentos_idEquipamentos` ASC) ,
-  INDEX `fk_Pedido_Estado1_idx` (`Estado_idEstado` ASC) ,
-  INDEX `fk_Pedido_Entidade1_idx` (`Junta_idEntidade` ASC) ,
-  INDEX `fk_Pedido_Entidade2_idx` (`IPSS_idEntidade` ASC) ,
-  CONSTRAINT `fk_Pedido_Equipamentos1`
-    FOREIGN KEY (`Equipamentos_idEquipamentos`)
-    REFERENCES `EqsDB`.`Equipamento` (`idEquipamento`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Pedido_Estado1`
-    FOREIGN KEY (`Estado_idEstado`)
-    REFERENCES `EqsDB`.`EstadoDoPedido` (`idEstado`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Pedido_Entidade1`
-    FOREIGN KEY (`Junta_idEntidade`)
-    REFERENCES `EqsDB`.`Entidade` (`idEntidade`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Pedido_Entidade2`
-    FOREIGN KEY (`IPSS_idEntidade`)
-    REFERENCES `EqsDB`.`Entidade` (`idEntidade`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB";
+  FOREIGN KEY (`Equipamentos_idEquipamentos`) REFERENCES `EqsDB`.`equipamento` (`idEquipamento`),
+  FOREIGN KEY (`Estado_idEstado`) REFERENCES `EqsDB`.`estadodopedido` (`idEstado`),
+  FOREIGN KEY (`Junta_idEntidade`) REFERENCES `EqsDB`.`entidade` (`idEntidade`),
+  FOREIGN KEY (`IPSS_idEntidade`) REFERENCES `EqsDB`.`entidade` (`idEntidade`)
+) ENGINE = InnoDB;";
+
 
 
 $tables = [$table1,$table2,$table3,$table4,$table5,$table6];
